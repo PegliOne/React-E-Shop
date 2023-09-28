@@ -1,0 +1,22 @@
+.item {
+  display: flex;
+  align-items: center;
+  margin: 24px;
+  padding: 24px;
+  border: 2px solid black;
+  border-radius: 20px;
+
+  .item__image {
+    width: 100px;
+    margin-right: 20px;
+    border: 2px solid black;
+  }
+
+  .item__para {
+    padding-right: 20px;
+  }
+
+  .item__button {
+    margin: 2px;
+  }
+}

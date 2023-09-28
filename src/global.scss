@@ -1,3 +1,11 @@
+@use "./assets/stylesheets/partials/mixins.scss";
+
 body {
+  margin: 0;
   text-align: center;
+
+  main {
+    @include mixins.column-styles;
+    margin: 24px 24px 80px;
+  }
 }

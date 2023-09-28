@@ -1,0 +1,28 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
+
+.details {
+  display: flex;
+  margin: 12px 0;
+  border: 2px solid black;
+
+  .details__image {
+    width: 400px;
+    border-right: 2px solid black;
+  }
+
+  .details__content {
+    @include mixins.column-styles;
+    justify-content: center;
+    padding: 20px;
+
+    .details__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .list__item {
+        margin: 24px;
+      }
+    }
+  }
+}

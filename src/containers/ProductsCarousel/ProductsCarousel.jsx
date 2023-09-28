@@ -1,8 +1,9 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
+import styles from "./ProductsCarousel.module.scss";
 
 const ProductsCarousel = () => {
   return (
-    <section>
+    <section className={styles.carousel}>
       <ProductCard />
       <ProductCard />
       <ProductCard />

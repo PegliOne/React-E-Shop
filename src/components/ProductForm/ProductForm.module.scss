@@ -1,0 +1,13 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
+
+.form {
+  @include mixins.column-styles;
+
+  .form__control {
+    margin: 12px;
+
+    .form__label {
+      padding: 0 8px;
+    }
+  }
+}
