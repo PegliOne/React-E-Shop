@@ -1,17 +1,17 @@
 import React from "react";
 import CartItem from "../../components/CartItem/CartItem";
 
-const Cart = () => {
+const Cart = ({ orderedItems }) => {
   return (
     <section>
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {orderedItems.map((orderedItem) => (
+        <CartItem
+          key={orderedItem.id}
+          title={orderedItem.title}
+          variantTitle={orderedItem.variantTitle}
+          quantityOrdered={orderedItem.quantityOrdered}
+        />
+      ))}
       <p>
         <strong>Total Price: </strong>$99.99
       </p>
