@@ -15,12 +15,6 @@ export const getProductById = async (id) => {
   return { id: snapshot.id, ...snapshot.data() };
 };
 
-export const getProductByTitle = async (title) => {
-  const docRef = doc(db, "products", title);
-  const snapshot = await getDoc(docRef);
-  return { id: snapshot.id, ...snapshot.data() };
-};
-
 export const getVariants = async (id) => {
   const collectionRef = collection(db, "products/" + id + "/variants");
   const snapshot = await getDocs(collectionRef);
