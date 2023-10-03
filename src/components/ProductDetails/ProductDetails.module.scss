@@ -1,18 +1,22 @@
 @use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
 
 .details {
   display: flex;
-  margin: 12px 0;
-  border: 2px solid black;
+  width: 800px;
+  margin: 12px 0 0;
+  background-color: pallete.$secondary-background-colour;
+  border: 4px solid pallete.$primary-text-colour;
 
   .details__image {
     width: 400px;
-    border-right: 2px solid black;
+    border-right: 4px solid pallete.$primary-text-colour;
   }
 
   .details__content {
     @include mixins.column-styles;
     justify-content: center;
+    width: 100%;
     padding: 20px;
 
     .details__list {

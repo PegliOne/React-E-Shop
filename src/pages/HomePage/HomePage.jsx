@@ -14,12 +14,16 @@ const HomePage = () => {
     return products.filter((product) => product.isFeatured);
   };
 
+  // TODO: Make the Product Carasoul component work with less than 3 products
+
   return (
     <>
       {products && (
         <main>
           <h2>Featured Games</h2>
-          <ProductsCarousel products={getFeaturedProducts(products)} />
+          {products.length >= 3 && (
+            <ProductsCarousel products={getFeaturedProducts(products)} />
+          )}
           <h2>All Games</h2>
           <ProductsGrid products={products} />
         </main>

@@ -1,9 +1,37 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
 .card {
-  margin: 8px;
+  display: block;
+  width: 280px;
+  margin: 12px;
+  padding-bottom: 8px;
+  background-color: pallete.$secondary-background-colour;
   border: 2px solid black;
   text-decoration: none;
 
-  .card__image {
-    width: 200px;
+  &:hover {
+    box-shadow: 0 0 8px pallete.$primary-text-colour;
+    cursor: pointer;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .card__image {
+      width: 100%;
+    }
+
+    .card__title {
+      margin: 24px 0 16px;
+      font-size: 1.4rem;
+    }
+
+    .card__para {
+      height: 24px;
+      margin: 12px 0;
+    }
   }
 }

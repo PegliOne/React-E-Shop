@@ -1,26 +1,43 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: 1px solid black;
+  background-color: pallete.$tertiary-background-colour;
 
   .navbar__heading {
     margin: 0;
     padding: 12px 20px;
+    font-size: 1.6rem;
   }
 
   .navbar__list {
     display: flex;
-    height: 52px;
+    height: 56px;
     margin: 0;
     list-style: none;
 
     .list__link {
       display: flex;
       align-items: center;
-      border: 1px solid black;
+      padding: 0 24px;
+      font-size: 1.2rem;
+      font-weight: 600;
       text-decoration: none;
+
+      &:hover {
+        background-color: pallete.$hover-colour;
+      }
+
+      &_selected {
+        background-color: pallete.$selected-colour;
+
+        &:hover {
+          background-color: pallete.$selected-colour;
+        }
+      }
 
       .list__text {
         padding: 0 8px;

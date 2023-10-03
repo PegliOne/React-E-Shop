@@ -1,13 +1,37 @@
 @use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
 
-.form {
-  @include mixins.column-styles;
+.container {
+  box-sizing: border-box;
+  width: 808px;
+  padding: 24px;
+  background-color: pallete.$secondary-background-colour;
+  border: 4px solid pallete.$primary-text-colour;
+  border-top: none;
 
-  .form__control {
-    margin: 12px;
+  .container__form {
+    @include mixins.column-styles;
 
-    .form__label {
-      padding: 0 8px;
+    .form__control {
+      margin: 12px;
+
+      .form__label {
+        padding: 0 8px;
+      }
+
+      .form__input,
+      .form__select {
+        margin-right: 12px;
+        padding: 0 8px;
+        border: none;
+        border-bottom: 2px solid pallete.$primary-text-colour;
+        color: pallete.$primary-text-colour;
+        font-size: 1rem;
+      }
+
+      .form__button {
+        @include mixins.button-styles;
+      }
     }
   }
 }

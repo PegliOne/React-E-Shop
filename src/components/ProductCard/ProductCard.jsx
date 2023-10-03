@@ -7,9 +7,13 @@ const ProductCard = ({ id, title, imageUrl, unitPrice, isFavourited }) => {
     <Link className={styles.card} to={`/product/${id}`}>
       <article className={styles.card__content}>
         <img className={styles.card__image} src={`/${imageUrl}`} alt={title} />
-        <h3 className={styles.card__title}>{title}</h3>
-        <p className={styles.card__para}>Price: ${unitPrice}</p>
-        {isFavourited && <p className={styles.card__para}>Favourited Game</p>}
+        <section className={styles.card__section}>
+          <h3 className={styles.card__title}>{title}</h3>
+          <p className={styles.card__para}>Price: ${unitPrice}</p>
+          <p className={styles.card__para}>
+            {isFavourited && <strong>Favourited Game</strong>}
+          </p>
+        </section>
       </article>
     </Link>
   );

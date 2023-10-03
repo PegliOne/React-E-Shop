@@ -1,9 +1,10 @@
 import React from "react";
 import CartItem from "../../components/CartItem/CartItem";
+import styles from "./Cart.module.scss";
 
 const Cart = ({ orderedItems }) => {
   return (
-    <section>
+    <section className={styles.cart}>
       {orderedItems.map((orderedItem) => (
         <CartItem
           key={orderedItem.id}
@@ -15,7 +16,7 @@ const Cart = ({ orderedItems }) => {
       <p>
         <strong>Total Price: </strong>$99.99
       </p>
-      <button>Place Order</button>
+      <button className={styles.cart__button}>Place Order</button>
     </section>
   );
 };

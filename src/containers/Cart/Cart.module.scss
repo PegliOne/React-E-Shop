@@ -1,0 +1,7 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
+
+.cart {
+  .cart__button {
+    @include mixins.button-styles;
+  }
+}

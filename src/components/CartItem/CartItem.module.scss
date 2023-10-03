@@ -1,22 +1,48 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
 .item {
   display: flex;
   align-items: center;
   margin: 24px;
   padding: 24px;
+  background-color: pallete.$secondary-background-colour;
   border: 2px solid black;
   border-radius: 20px;
 
-  .item__image {
-    width: 100px;
-    margin-right: 20px;
-    border: 2px solid black;
+  .item__div {
+    display: flex;
+    justify-content: center;
+    width: 260px;
+
+    .item__image {
+      height: 200px;
+      margin-right: 20px;
+      border: 2px solid black;
+    }
   }
 
-  .item__para {
-    padding-right: 20px;
-  }
+  .item__quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
 
-  .item__button {
-    margin: 2px;
+    .quantity__span {
+      display: flex;
+      height: fit-content;
+
+      .quantity__button {
+        @include mixins.button-styles(4px 8px, 4px);
+        margin: 0 0 0 4px;
+
+        .button__span {
+          display: inline-block;
+          width: 10px;
+          position: relative;
+          top: -1px;
+        }
+      }
+    }
   }
 }

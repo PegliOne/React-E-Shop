@@ -1,5 +1,22 @@
+@use "./pallete.scss";
+
 @mixin column-styles {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@mixin button-styles($padding: 8px 12px, $border-radius: 12px) {
+  margin-top: 8px;
+  padding: $padding;
+  color: pallete.$primary-text-colour;
+  font-size: 1.1rem;
+  background-color: pallete.$tertiary-background-colour;
+  border: 2px solid pallete.$primary-text-colour;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: pallete.$hover-colour;
+    cursor: pointer;
+  }
 }
