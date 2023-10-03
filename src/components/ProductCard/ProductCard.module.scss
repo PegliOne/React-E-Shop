@@ -1,9 +1,10 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .card {
   display: block;
   width: 280px;
-  margin: 12px;
+  margin: 8px;
   padding-bottom: 8px;
   background-color: pallete.$secondary-background-colour;
   border: 2px solid black;
@@ -27,11 +28,20 @@
     .card__title {
       margin: 24px 0 16px;
       font-size: 1.4rem;
+
+      @include breakpoints.tablet {
+        font-size: 1.2rem;
+      }
     }
 
     .card__para {
       height: 24px;
       margin: 12px 0;
+
+      @include breakpoints.tablet {
+        margin: 20px 0;
+        font-size: 1rem;
+      }
     }
   }
 }

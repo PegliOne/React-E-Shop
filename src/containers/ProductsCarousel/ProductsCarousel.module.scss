@@ -1,13 +1,26 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .carousel {
   display: flex;
   margin: 0 0 24px;
 
+  @include breakpoints.tablet {
+    width: 740px;
+  }
+
+  @include breakpoints.tablet {
+    width: 460px;
+  }
+
   .carousel__button {
     width: 80px;
-    color: red;
-    fill: currentColor;
+    margin: -12px;
+
+    @include breakpoints.tablet {
+      width: 60px;
+      margin: -20px;
+    }
 
     &:hover {
       filter: drop-shadow(0 0 2px black);

@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/mixins.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
@@ -10,37 +11,87 @@
   border: 2px solid black;
   border-radius: 20px;
 
+  @include breakpoints.phone {
+    padding: 12px;
+  }
+
   .item__div {
     display: flex;
     justify-content: center;
     width: 260px;
 
+    @include breakpoints.phone {
+      width: 180px;
+    }
+
     .item__image {
       height: 200px;
-      margin-right: 20px;
+
       border: 2px solid black;
+
+      @include breakpoints.phone {
+        height: 160px;
+        margin-right: 8px;
+      }
     }
   }
 
-  .item__quantity {
+  .item__content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    margin-top: 28px;
+    width: 100%;
+    font-size: 1.6rem;
 
-    .quantity__span {
+    @include breakpoints.small-desktop {
+      font-size: 1.2rem;
+    }
+
+    @include breakpoints.phone {
+      width: unset;
+      font-size: 1rem;
+    }
+
+    .item__title {
+      font-size: 1.6rem;
+
+      @include breakpoints.small-desktop {
+        font-size: 1.2rem;
+      }
+
+      @include breakpoints.phone {
+        font-size: 1rem;
+      }
+    }
+
+    .item__quantity {
       display: flex;
-      height: fit-content;
+      align-items: center;
+      margin-top: 28px;
 
-      .quantity__button {
-        @include mixins.button-styles(4px 8px, 4px);
-        margin: 0 0 0 4px;
+      .quantity__span {
+        display: flex;
+        height: fit-content;
+        margin-right: 20px;
 
-        .button__span {
-          display: inline-block;
-          width: 10px;
-          position: relative;
-          top: -1px;
+        @include breakpoints.phone {
+          margin-right: 8px;
+        }
+
+        .quantity__button {
+          @include mixins.button-styles(4px 8px, 4px);
+          margin: 0 0 0 4px;
+
+          @include breakpoints.phone {
+            font-size: 1rem;
+          }
+
+          .button__span {
+            display: inline-block;
+            width: 10px;
+            position: relative;
+            top: -1px;
+          }
         }
       }
     }

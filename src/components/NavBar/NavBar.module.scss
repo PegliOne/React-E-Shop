@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .navbar {
@@ -7,17 +8,32 @@
   width: 100%;
   background-color: pallete.$tertiary-background-colour;
 
+  @include breakpoints.phone {
+    flex-direction: column;
+  }
+
   .navbar__heading {
     margin: 0;
     padding: 12px 20px;
     font-size: 1.6rem;
+
+    @include breakpoints.tablet {
+      font-size: 1.4rem;
+    }
   }
 
   .navbar__list {
     display: flex;
     height: 56px;
     margin: 0;
+    padding: 0;
     list-style: none;
+
+    @include breakpoints.phone {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
 
     .list__link {
       display: flex;
@@ -40,6 +56,11 @@
       }
 
       .list__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 36px;
         padding: 0 8px;
         line-height: 1;
       }

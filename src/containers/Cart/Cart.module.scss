@@ -1,6 +1,17 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/mixins.scss";
 
 .cart {
+  width: 72%;
+
+  @include breakpoints.small-desktop {
+    width: 100%;
+  }
+
+  @include breakpoints.phone {
+    width: unset;
+  }
+
   .cart__button {
     @include mixins.button-styles;
   }

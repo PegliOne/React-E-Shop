@@ -23,7 +23,7 @@ const CartItem = ({ title, variantTitle, quantityOrdered }) => {
               alt={title}
             />
           </div>
-          <section>
+          <section className={styles.item__content}>
             <p className={styles.item__title}>
               <strong>{title}: </strong>
               {variantTitle}

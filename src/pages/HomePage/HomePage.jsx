@@ -15,6 +15,8 @@ const HomePage = () => {
   };
 
   // TODO: Make the Product Carasoul component work with less than 3 products
+  // TODO: Give it less components when it's displayed on mobile
+  // TODO: Remove current responsive stylings for carousel and cards
 
   return (
     <>
