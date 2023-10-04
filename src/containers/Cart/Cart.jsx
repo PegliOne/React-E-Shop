@@ -2,15 +2,15 @@ import React from "react";
 import CartItem from "../../components/CartItem/CartItem";
 import styles from "./Cart.module.scss";
 
-const Cart = ({ orderedItems }) => {
+const Cart = ({ cartItems }) => {
   return (
     <section className={styles.cart}>
-      {orderedItems.map((orderedItem) => (
+      {cartItems.map((cartItem) => (
         <CartItem
-          key={orderedItem.id}
-          title={orderedItem.title}
-          variantTitle={orderedItem.variantTitle}
-          quantityOrdered={orderedItem.quantityOrdered}
+          key={cartItem.id}
+          title={cartItem.title}
+          variantTitle={cartItem.variantTitle}
+          quantity={cartItem.quantity}
         />
       ))}
       <p>

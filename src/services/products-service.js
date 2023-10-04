@@ -1,7 +1,7 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../config/firestore";
 
-// Refactor this to make it less repetitive
+// TODO: Refactor this to make it less repetitive (including get cart items method)
 
 export const getProducts = async () => {
   const collectionRef = collection(db, "products");
@@ -17,12 +17,6 @@ export const getProductById = async (id) => {
 
 export const getVariants = async (id) => {
   const collectionRef = collection(db, "products/" + id + "/variants");
-  const snapshot = await getDocs(collectionRef);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-};
-
-export const getOrderedItems = async () => {
-  const collectionRef = collection(db, "orderedItems");
   const snapshot = await getDocs(collectionRef);
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };

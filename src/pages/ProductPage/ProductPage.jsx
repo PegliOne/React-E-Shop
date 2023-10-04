@@ -28,6 +28,7 @@ const ProductPage = () => {
             variants={product.variants}
           />
           <ProductForm
+            title={product.title}
             unitPrice={product.unitPrice}
             variants={product.variants}
           />

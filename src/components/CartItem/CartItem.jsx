@@ -2,7 +2,7 @@ import styles from "./CartItem.module.scss";
 import { useState, useEffect } from "react";
 import { getProducts } from "../../services/products-service";
 
-const CartItem = ({ title, variantTitle, quantityOrdered }) => {
+const CartItem = ({ title, variantTitle, quantity }) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const CartItem = ({ title, variantTitle, quantityOrdered }) => {
             <div className={styles.item__quantity}>
               <span className={styles.quantity__span}>
                 <strong>Quantity: </strong>
-                {quantityOrdered}
+                {quantity}
               </span>
               <span className={styles.quantity__span}>
                 <button className={styles.quantity__button}>+</button>

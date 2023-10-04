@@ -4,7 +4,7 @@
 .container {
   box-sizing: border-box;
   width: 1168px;
-  padding: 24px;
+  padding: 48px 24px 24px;
   background-color: pallete.$secondary-background-colour;
   border: 4px solid pallete.$primary-text-colour;
   border-top: none;
@@ -29,10 +29,19 @@
         border-bottom: 2px solid pallete.$primary-text-colour;
         color: pallete.$primary-text-colour;
         font-size: 1rem;
+        outline: none;
       }
 
       .form__button {
         @include mixins.button-styles;
+      }
+    }
+
+    .form__message {
+      height: 24px;
+
+      &_error {
+        color: pallete.$danger-colour;
       }
     }
   }

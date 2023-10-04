@@ -1,19 +1,19 @@
 import React from "react";
 import Cart from "../../containers/Cart/Cart";
 import { useState, useEffect } from "react";
-import { getOrderedItems } from "../../services/products-service";
+import { getCartItems } from "../../services/cart-service";
 
 const CartPage = () => {
-  const [orderedItems, setOrderedItems] = useState(null);
+  const [cartItems, setCartItems] = useState(null);
 
   useEffect(() => {
-    getOrderedItems().then((data) => setOrderedItems(data));
+    getCartItems().then((data) => setCartItems(data));
   }, []);
 
   return (
     <main>
       <h2>Your Shopping Cart</h2>
-      {orderedItems && <Cart orderedItems={orderedItems} />}
+      {cartItems && <Cart cartItems={cartItems} />}
     </main>
   );
 };
