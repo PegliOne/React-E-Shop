@@ -8,6 +8,7 @@ const Cart = ({ cartItems }) => {
       {cartItems.map((cartItem) => (
         <CartItem
           key={cartItem.id}
+          id={cartItem.id}
           title={cartItem.title}
           variantTitle={cartItem.variantTitle}
           quantity={cartItem.quantity}

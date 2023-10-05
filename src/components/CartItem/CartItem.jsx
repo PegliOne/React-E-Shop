@@ -1,8 +1,10 @@
 import styles from "./CartItem.module.scss";
 import { useState, useEffect } from "react";
 import { getProducts } from "../../services/products-service";
+import { updateCartItemQuantity } from "../../services/cart-service";
 
-const CartItem = ({ title, variantTitle, quantity }) => {
+const CartItem = ({ id, title, variantTitle, quantity }) => {
+  const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -11,6 +13,14 @@ const CartItem = ({ title, variantTitle, quantity }) => {
       setProduct(product);
     });
   }, []);
+
+  const adjustQuantity = (value) => {
+    const newQuantity = currentQuantity + value;
+    if (newQuantity > 0 && newQuantity <= 5) {
+      setCurrentQuantity(currentQuantity + value);
+    }
+    updateCartItemQuantity(id, newQuantity);
+  };
 
   return (
     <>
@@ -31,11 +41,19 @@ const CartItem = ({ title, variantTitle, quantity }) => {
             <div className={styles.item__quantity}>
               <span className={styles.quantity__span}>
                 <strong>Quantity: </strong>
-                {quantity}
+                {currentQuantity}
               </span>
               <span className={styles.quantity__span}>
-                <button className={styles.quantity__button}>+</button>
-                <button className={styles.quantity__button}>
+                <button
+                  className={styles.quantity__button}
+                  onClick={() => adjustQuantity(1)}
+                >
+                  +
+                </button>
+                <button
+                  className={styles.quantity__button}
+                  onClick={() => adjustQuantity(-1)}
+                >
                   <span className={styles.button__span}>-</span>
                 </button>
                 <button className={styles.quantity__button}>Remove</button>
