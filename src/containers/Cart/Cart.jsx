@@ -1,22 +1,7 @@
-import { useState, useEffect } from "react";
 import CartItem from "../../components/CartItem/CartItem";
 import styles from "./Cart.module.scss";
 
-const Cart = ({ cartItems }) => {
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const setCurrentPrice = (quantity, unitPrice) => {
-    return quantity * unitPrice;
-  };
-
-  useEffect(() => {
-    const totalPrice = cartItems.reduce(
-      (total, cartItem) => total + setCurrentPrice(cartItem.quantity, 19.99),
-      0
-    );
-    setTotalPrice(totalPrice);
-  }, []);
-
+const Cart = ({ cartItems, totalPrice, updateLocalCart }) => {
   return (
     <section className={styles.cart}>
       {cartItems.map((cartItem) => (
@@ -26,7 +11,7 @@ const Cart = ({ cartItems }) => {
           title={cartItem.title}
           variantTitle={cartItem.variantTitle}
           quantity={cartItem.quantity}
-          setCurrentPrice={setCurrentPrice}
+          updateLocalCart={updateLocalCart}
         />
       ))}
       <p>

@@ -6,7 +6,7 @@ import {
   updateCartItemQuantity,
 } from "../../services/cart-service";
 
-const CartItem = ({ id, title, variantTitle, quantity }) => {
+const CartItem = ({ id, title, variantTitle, quantity, updateLocalCart }) => {
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [product, setProduct] = useState(null);
   const [message, setMessage] = useState(null);
@@ -48,11 +48,13 @@ const CartItem = ({ id, title, variantTitle, quantity }) => {
     setCurrentQuantity(currentQuantity + value);
     updateCartItemQuantity(id, newQuantity);
     setMessage(null);
+    updateLocalCart();
   };
 
   const removeCartItem = () => {
     setProduct(null);
     deleteCartItemById(id);
+    updateLocalCart();
   };
 
   return (

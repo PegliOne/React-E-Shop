@@ -7,7 +7,7 @@ const HomePage = () => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    getProducts().then((data) => setProducts(data));
+    getProducts().then((products) => setProducts(products));
   }, []);
 
   const getFeaturedProducts = (products) => {
