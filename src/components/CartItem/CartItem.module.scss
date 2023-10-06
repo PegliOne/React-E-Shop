@@ -39,6 +39,7 @@
   .item__content {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     font-size: 1.6rem;
@@ -48,7 +49,7 @@
     }
 
     @include breakpoints.phone {
-      width: unset;
+      width: 260px;
       font-size: 1rem;
     }
 
@@ -67,7 +68,7 @@
     .item__quantity {
       display: flex;
       align-items: center;
-      margin-top: 28px;
+      margin-bottom: 8px;
 
       .quantity__span {
         display: flex;
@@ -94,6 +95,10 @@
           }
         }
       }
+    }
+
+    .item__message {
+      @include mixins.message-styles;
     }
   }
 }

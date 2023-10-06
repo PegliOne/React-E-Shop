@@ -1,11 +1,12 @@
 import styles from "./CartItem.module.scss";
 import { useState, useEffect } from "react";
-import { getProducts } from "../../services/products-service";
+import { getProducts, getVariants } from "../../services/products-service";
 import { updateCartItemQuantity } from "../../services/cart-service";
 
 const CartItem = ({ id, title, variantTitle, quantity }) => {
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [product, setProduct] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     getProducts().then((products) => {
@@ -14,12 +15,33 @@ const CartItem = ({ id, title, variantTitle, quantity }) => {
     });
   }, []);
 
-  const adjustQuantity = (value) => {
+  const adjustQuantity = async (value) => {
+    const variants = await getVariants(product.id);
+    const variantQuantity = variants.find(
+      (variant) => variant.title === variantTitle
+    ).quantity;
+
     const newQuantity = currentQuantity + value;
-    if (newQuantity > 0 && newQuantity <= 5) {
-      setCurrentQuantity(currentQuantity + value);
+
+    if (newQuantity > 5) {
+      setMessage(`Error: Maximum order quantity reached`);
+      return;
     }
+
+    if (newQuantity > variantQuantity) {
+      setMessage(
+        `Error: Cannot order ${newQuantity} units of this product (${variantQuantity} in stock)`
+      );
+      return;
+    }
+
+    if (newQuantity <= 0) {
+      return;
+    }
+
+    setCurrentQuantity(currentQuantity + value);
     updateCartItemQuantity(id, newQuantity);
+    setMessage(null);
   };
 
   return (
@@ -59,6 +81,11 @@ const CartItem = ({ id, title, variantTitle, quantity }) => {
                 <button className={styles.quantity__button}>Remove</button>
               </span>
             </div>
+            <p
+              className={`${styles.item__message} ${styles.item__message_error}`}
+            >
+              {message}
+            </p>
           </section>
         </article>
       )}

@@ -40,3 +40,20 @@
     cursor: pointer;
   }
 }
+
+@mixin message-styles {
+  height: 24px;
+  font-size: 1.2rem;
+
+  @include breakpoints.small-desktop {
+    font-size: 1rem;
+  }
+
+  @include breakpoints.phone {
+    font-size: 0.8rem;
+  }
+
+  &_error {
+    color: pallete.$danger-colour;
+  }
+}

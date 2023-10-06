@@ -69,7 +69,7 @@ const ProductForm = ({ title, unitPrice, variants }) => {
   return (
     <section className={styles.container}>
       <h3>Buy The Game</h3>
-      <p>You can purchase a maximum of 5 of each item.</p>
+      <p>You can purchase a maximum of 5 of each item</p>
       <form
         className={styles.container__form}
         onSubmit={handleSubmit}

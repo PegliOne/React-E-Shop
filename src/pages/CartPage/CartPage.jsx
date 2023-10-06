@@ -13,6 +13,7 @@ const CartPage = () => {
   return (
     <main>
       <h2>Your Shopping Cart</h2>
+      <p>You can purchase a maximum of 5 of each item</p>
       {cartItems && <Cart cartItems={cartItems} />}
     </main>
   );

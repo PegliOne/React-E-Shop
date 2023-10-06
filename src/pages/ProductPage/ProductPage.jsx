@@ -11,8 +11,8 @@ const ProductPage = () => {
   // I probably should refactor this
   useEffect(() => {
     getProductById(id).then((productData) => {
-      getVariants(id).then((variantData) => {
-        setProduct({ variants: variantData, ...productData });
+      getVariants(id).then((variants) => {
+        setProduct({ variants: variants, ...productData });
       });
     });
   }, []);

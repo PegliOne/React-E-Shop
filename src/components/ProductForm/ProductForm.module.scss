@@ -38,11 +38,7 @@
     }
 
     .form__message {
-      height: 24px;
-
-      &_error {
-        color: pallete.$danger-colour;
-      }
+      @include mixins.message-styles;
     }
   }
 }
