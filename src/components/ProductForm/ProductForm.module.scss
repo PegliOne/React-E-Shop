@@ -21,6 +21,11 @@
         padding: 0 8px;
       }
 
+      .form__price {
+        display: inline-block;
+        width: 24px;
+      }
+
       .form__input,
       .form__select {
         margin-right: 12px;
@@ -30,6 +35,11 @@
         color: pallete.$primary-text-colour;
         font-size: 1rem;
         outline: none;
+      }
+
+      .form__input {
+        display: inline-block;
+        width: 32px;
       }
 
       .form__button {

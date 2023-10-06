@@ -1,12 +1,18 @@
 import styles from "./CartItem.module.scss";
 import { useState, useEffect } from "react";
 import { getProducts, getVariants } from "../../services/products-service";
-import { updateCartItemQuantity } from "../../services/cart-service";
+import {
+  deleteCartItemById,
+  updateCartItemQuantity,
+} from "../../services/cart-service";
 
 const CartItem = ({ id, title, variantTitle, quantity }) => {
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [product, setProduct] = useState(null);
   const [message, setMessage] = useState(null);
+
+  const currentPrice =
+    product !== null ? currentQuantity * product.unitPrice : null;
 
   useEffect(() => {
     getProducts().then((products) => {
@@ -44,6 +50,11 @@ const CartItem = ({ id, title, variantTitle, quantity }) => {
     setMessage(null);
   };
 
+  const removeCartItem = () => {
+    setProduct(null);
+    deleteCartItemById(id);
+  };
+
   return (
     <>
       {product && (
@@ -78,7 +89,18 @@ const CartItem = ({ id, title, variantTitle, quantity }) => {
                 >
                   <span className={styles.button__span}>-</span>
                 </button>
-                <button className={styles.quantity__button}>Remove</button>
+                <button
+                  className={styles.quantity__button}
+                  onClick={removeCartItem}
+                >
+                  Remove
+                </button>
+              </span>
+              <span className={styles.quantity__span}>
+                <strong>Price: </strong>
+                <span className={styles.quantity__price}>
+                  ${currentPrice.toFixed(2)}
+                </span>
               </span>
             </div>
             <p

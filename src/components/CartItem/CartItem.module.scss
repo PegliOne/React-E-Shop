@@ -95,6 +95,12 @@
           }
         }
       }
+
+      .quantity__price {
+        display: inline-block;
+        width: 104px;
+        text-align: right;
+      }
     }
 
     .item__message {

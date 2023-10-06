@@ -9,8 +9,15 @@ import styles from "./ProductForm.module.scss";
 const ProductForm = ({ title, unitPrice, variants }) => {
   const formRef = useRef(null);
 
+  const [currentPrice, setCurrentPrice] = useState(0);
   const [message, setMessage] = useState(null);
   const [hasError, setHasError] = useState(false);
+
+  const updatePrice = (e) => {
+    const quantity = e.target.value;
+    const currentPrice = quantity * unitPrice;
+    setCurrentPrice(currentPrice);
+  };
 
   const checkItemInCart = (variantTitle) => {
     return getCartItems().then((cartItems) => {
@@ -41,6 +48,8 @@ const ProductForm = ({ title, unitPrice, variants }) => {
       variantTitle: formData.get("variantTitle"),
       quantity: Number(formData.get("quantity")),
     };
+
+    setCurrentPrice(cartItem.quantity * unitPrice);
 
     const isItemInCart = await checkItemInCart(cartItem.variantTitle);
 
@@ -86,9 +95,13 @@ const ProductForm = ({ title, unitPrice, variants }) => {
             max="5"
             name="quantity"
             required
+            onChange={updatePrice}
           />
           <span>
-            <strong className={styles.form__label}>Price:</strong>${unitPrice}
+            <strong className={styles.form__label}>Price:</strong>$
+            <span className={styles.form__price}>
+              {currentPrice.toFixed(2)}
+            </span>
           </span>
         </div>
         <div className={styles.form__control}>
