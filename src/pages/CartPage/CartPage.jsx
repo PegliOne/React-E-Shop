@@ -1,14 +1,19 @@
 import React from "react";
 import Cart from "../../containers/Cart/Cart";
 import { useState, useEffect } from "react";
-import { getCartItems } from "../../services/cart-service";
-import { getProducts } from "../../services/products-service";
+import { getCartItems, deleteCartItemById } from "../../services/cart-service";
+import {
+  getProducts,
+  getVariants,
+  updateVariantQuantity,
+} from "../../services/products-service";
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [products, setProducts] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Refactor this by spliting the function up
+  // Refactor this by spliting the functions up
 
   const updateLocalCart = () => {
     const promises = [getCartItems(), getProducts()];
@@ -26,8 +31,40 @@ const CartPage = () => {
         0
       );
       setCartItems(cartItems);
+      setProducts(products);
       setTotalPrice(totalPrice);
     });
+  };
+
+  // Refactor this by removing unncessart filtering
+
+  const purchaseCart = async () => {
+    const cartItemTitles = cartItems.map((cartItem) => cartItem.title);
+    const productsInCart = products.filter((product) =>
+      cartItemTitles.includes(product.title)
+    );
+    await productsInCart.map((product) => {
+      getVariants(product.id).then((variants) => {
+        const cartItemVariantTitles = cartItems.map(
+          (cartItem) => cartItem.variantTitle
+        );
+        cartItemVariantTitles.forEach((variantTitle) => {
+          const variantToUpdate = variants.find(
+            (variant) => variant.title === variantTitle
+          );
+          const currentCartItem = cartItems.find(
+            (cartItem) =>
+              cartItem.variantTitle === variantTitle &&
+              cartItem.title === product.title
+          );
+          const newQuantity =
+            variantToUpdate.quantity - currentCartItem.quantity;
+          updateVariantQuantity(product.id, variantToUpdate.id, newQuantity);
+        });
+      });
+    });
+    cartItems.forEach((cartItem) => deleteCartItemById(cartItem.id));
+    setCartItems([]);
   };
 
   useEffect(() => {
@@ -38,12 +75,16 @@ const CartPage = () => {
     <main>
       <h2>Your Shopping Cart</h2>
       <p>You can purchase a maximum of 5 of each item</p>
-      {cartItems && (
+      {cartItems.length > 0 && (
         <Cart
           cartItems={cartItems}
           totalPrice={totalPrice}
           updateLocalCart={updateLocalCart}
+          purchaseCart={purchaseCart}
         />
+      )}
+      {cartItems.length === 0 && (
+        <p>You currently have no items in your cart</p>
       )}
     </main>
   );
