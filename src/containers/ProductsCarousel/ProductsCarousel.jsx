@@ -2,8 +2,10 @@ import { useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductsCarousel.module.scss";
 
-const ProductsCarousel = ({ products }) => {
-  const [indices, setIndices] = useState([1, 2, 3]);
+const ProductsCarousel = ({ products, productDisplayCount, isDesktop }) => {
+  const indicesArray = [0, 1, 2].slice(0, productDisplayCount);
+
+  const [indices, setIndices] = useState(indicesArray);
 
   // TODO: Create a reusable component for the buttons and move the updateIndices logic to it
 
@@ -18,9 +20,16 @@ const ProductsCarousel = ({ products }) => {
     setIndices(newIndices);
   };
 
+  let carouselClasses = styles.carousel;
+  if (isDesktop) {
+    carouselClasses += ` ${styles.carousel_desktop}`;
+  } else {
+    carouselClasses += ` ${styles.carousel_mobile_or_tablet}`;
+  }
+
   return (
-    <section className={styles.carousel}>
-      {products.length > 3 && (
+    <section className={carouselClasses}>
+      {products.length > productDisplayCount && (
         <img
           className={styles.carousel__button}
           src="caret-left.svg"
@@ -38,7 +47,7 @@ const ProductsCarousel = ({ products }) => {
           isFavourited={products[index].isFavourited}
         />
       ))}
-      {products.length > 3 && (
+      {products.length > productDisplayCount && (
         <img
           className={styles.carousel__button}
           src="caret-right.svg"

@@ -11,27 +11,30 @@
   border: 2px solid pallete.$primary-text-colour;
   border-radius: 20px;
 
-  @include breakpoints.phone {
-    padding: 12px;
+  @include breakpoints.mobile {
+    align-items: flex-start;
+    padding: 12px 24px 12px 12px;
   }
 
-  .item__div {
+  .item__section {
     display: flex;
     justify-content: center;
     width: 260px;
 
-    @include breakpoints.phone {
-      width: 180px;
+    @include breakpoints.mobile {
+      width: 160px;
     }
 
     .item__image {
       height: 200px;
-
       border: 2px solid pallete.$primary-text-colour;
 
-      @include breakpoints.phone {
+      &:hover {
+        box-shadow: 0 0 8px pallete.$primary-text-colour;
+      }
+
+      @include breakpoints.mobile {
         height: 160px;
-        margin-right: 8px;
       }
     }
   }
@@ -48,34 +51,59 @@
       font-size: 1.2rem;
     }
 
-    @include breakpoints.phone {
+    @include breakpoints.mobile {
       width: 260px;
       font-size: 1rem;
     }
 
-    .item__title {
-      font-size: 1.6rem;
+    .item__link {
+      text-decoration: none;
 
-      @include breakpoints.small-desktop {
-        font-size: 1.2rem;
+      &:hover {
+        color: pallete.$primary-text-hover-colour;
       }
 
-      @include breakpoints.phone {
-        font-size: 1rem;
+      .item__title {
+        margin-top: 8px;
+        font-size: 1.6rem;
+
+        @include breakpoints.small-desktop {
+          font-size: 1.2rem;
+        }
+
+        @include breakpoints.mobile {
+          margin-bottom: 8px;
+          font-size: 1rem;
+        }
       }
     }
 
-    .item__quantity {
+    .item__div {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+
+      @include breakpoints.tablet {
+        flex-direction: column;
+      }
+
+      .item__quantity,
+      .item__price {
+        display: flex;
+        align-items: center;
+      }
+
+      .item__price {
+        @include breakpoints.tablet {
+          margin-top: 12px;
+        }
+      }
 
       .quantity__span {
         display: flex;
         height: fit-content;
         margin-right: 20px;
 
-        @include breakpoints.phone {
+        @include breakpoints.mobile {
           margin-right: 8px;
         }
 
@@ -83,7 +111,7 @@
           @include mixins.button-styles(4px 8px, 4px);
           margin: 0 0 0 4px;
 
-          @include breakpoints.phone {
+          @include breakpoints.mobile {
             font-size: 1rem;
           }
 
@@ -105,6 +133,7 @@
 
     .item__message {
       @include mixins.message-styles;
+      margin-bottom: 0;
     }
   }
 }

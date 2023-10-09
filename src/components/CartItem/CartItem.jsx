@@ -5,6 +5,7 @@ import {
   deleteCartItemById,
   updateCartItemQuantity,
 } from "../../services/cart-service";
+import { Link } from "react-router-dom";
 
 const CartItem = ({ id, title, variantTitle, quantity, updateLocalCart }) => {
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -61,49 +62,56 @@ const CartItem = ({ id, title, variantTitle, quantity, updateLocalCart }) => {
     <>
       {product && (
         <article className={styles.item}>
-          <div className={styles.item__div}>
-            <img
-              className={styles.item__image}
-              src={`/${product.imageUrl}`}
-              alt={title}
-            />
-          </div>
+          <section className={styles.item__section}>
+            <Link to={`/product/${product.id}`}>
+              <img
+                className={styles.item__image}
+                src={`/${product.imageUrl}`}
+                alt={title}
+              />
+            </Link>
+          </section>
           <section className={styles.item__content}>
-            <p className={styles.item__title}>
-              <strong>{title}: </strong>
-              {variantTitle}
-            </p>
-            <div className={styles.item__quantity}>
-              <span className={styles.quantity__span}>
-                <strong>Quantity: </strong>
-                {currentQuantity}
-              </span>
-              <span className={styles.quantity__span}>
-                <button
-                  className={styles.quantity__button}
-                  onClick={() => adjustQuantity(1)}
-                >
-                  +
-                </button>
-                <button
-                  className={styles.quantity__button}
-                  onClick={() => adjustQuantity(-1)}
-                >
-                  <span className={styles.button__span}>-</span>
-                </button>
-                <button
-                  className={styles.quantity__button}
-                  onClick={removeCartItem}
-                >
-                  Remove
-                </button>
-              </span>
-              <span className={styles.quantity__span}>
+            <Link className={styles.item__link} to={`/product/${product.id}`}>
+              <p className={styles.item__title}>
+                <strong>{title}: </strong>
+                {variantTitle}
+              </p>
+            </Link>
+            <div className={styles.item__div}>
+              <div className={styles.item__quantity}>
+                <span className={styles.quantity__span}>
+                  <strong>Quantity: </strong>
+                  {currentQuantity}
+                </span>
+                <span className={styles.quantity__span}>
+                  <button
+                    className={styles.quantity__button}
+                    onClick={() => adjustQuantity(1)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className={styles.quantity__button}
+                    onClick={() => adjustQuantity(-1)}
+                  >
+                    <span className={styles.button__span}>-</span>
+                  </button>
+                  <button
+                    className={styles.quantity__button}
+                    onClick={removeCartItem}
+                  >
+                    Remove
+                  </button>
+                </span>
+              </div>
+
+              <div className={styles.item__price}>
                 <strong>Price: </strong>
-                <span className={styles.quantity__price}>
+                <span className={styles.price__span}>
                   ${currentPrice.toFixed(2)}
                 </span>
-              </span>
+              </div>
             </div>
             <p
               className={`${styles.item__message} ${styles.item__message_error}`}

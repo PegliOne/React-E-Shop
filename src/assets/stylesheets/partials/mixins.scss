@@ -10,7 +10,7 @@
 @mixin product-page-responsive-styling(
   $desktop-width: 800px,
   $tablet-width: 720px,
-  $phone-width: 400px
+  $mobile-width: 400px
 ) {
   @include breakpoints.small-desktop {
     width: $desktop-width;
@@ -21,8 +21,8 @@
     flex-direction: column;
   }
 
-  @include breakpoints.phone {
-    width: $phone-width;
+  @include breakpoints.mobile {
+    width: $mobile-width;
   }
 }
 
@@ -49,7 +49,7 @@
     font-size: 1rem;
   }
 
-  @include breakpoints.phone {
+  @include breakpoints.mobile {
     font-size: 0.8rem;
   }
 

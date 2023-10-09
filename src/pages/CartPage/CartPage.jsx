@@ -12,8 +12,9 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [hasCompletedPurchase, setHasCompletedPurchase] = useState(false);
 
-  // Refactor this by spliting the functions up
+  // TODO: Refactor this by spliting the functions up
 
   const updateLocalCart = () => {
     const promises = [getCartItems(), getProducts()];
@@ -36,7 +37,7 @@ const CartPage = () => {
     });
   };
 
-  // Refactor this by removing unncessart filtering
+  // TODO: Refactor this by removing unncessary filtering
 
   const purchaseCart = async () => {
     const cartItemTitles = cartItems.map((cartItem) => cartItem.title);
@@ -65,6 +66,7 @@ const CartPage = () => {
     });
     cartItems.forEach((cartItem) => deleteCartItemById(cartItem.id));
     setCartItems([]);
+    setHasCompletedPurchase(true);
   };
 
   useEffect(() => {
@@ -82,6 +84,11 @@ const CartPage = () => {
           updateLocalCart={updateLocalCart}
           purchaseCart={purchaseCart}
         />
+      )}
+      {hasCompletedPurchase && (
+        <p className="success">
+          <strong>Purchase Successful!</strong>
+        </p>
       )}
       {cartItems.length === 0 && (
         <p>You currently have no items in your cart</p>

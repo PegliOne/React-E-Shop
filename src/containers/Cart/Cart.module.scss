@@ -8,7 +8,7 @@
     width: 100%;
   }
 
-  @include breakpoints.phone {
+  @include breakpoints.mobile {
     width: unset;
   }
 

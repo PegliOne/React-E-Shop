@@ -14,17 +14,27 @@ const HomePage = () => {
     return products.filter((product) => product.isFeatured);
   };
 
-  // TODO: Make the Product Carasoul component work with less than 3 products
-  // TODO: Give it less components when it's displayed on mobile
-  // TODO: Remove current responsive stylings for carousel and cards
+  const mobileAndTabletProductCount = 1;
+  const desktopProductCount = 3;
 
   return (
     <>
       {products && (
         <main>
           <h2>Featured Games</h2>
-          {products.length >= 3 && (
-            <ProductsCarousel products={getFeaturedProducts(products)} />
+          {products.length >= desktopProductCount && (
+            <ProductsCarousel
+              products={getFeaturedProducts(products)}
+              productDisplayCount={desktopProductCount}
+              isDesktop={true}
+            />
+          )}
+          {products.length >= mobileAndTabletProductCount && (
+            <ProductsCarousel
+              products={getFeaturedProducts(products)}
+              productDisplayCount={mobileAndTabletProductCount}
+              isDesktop={false}
+            />
           )}
           <h2>All Games</h2>
           <ProductsGrid products={products} />

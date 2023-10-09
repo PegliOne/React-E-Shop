@@ -23,6 +23,11 @@ body {
 
     p {
       font-size: 1.4rem;
+
+      &.success {
+        color: pallete.$success-colour;
+        font-size: 1.4rem;
+      }
     }
 
     section {
