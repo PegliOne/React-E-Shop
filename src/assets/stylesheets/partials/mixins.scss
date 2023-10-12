@@ -44,6 +44,7 @@
 @mixin message-styles {
   height: 24px;
   font-size: 1.2rem;
+  color: pallete.$success-colour;
 
   @include breakpoints.small-desktop {
     font-size: 1rem;

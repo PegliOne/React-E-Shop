@@ -2,8 +2,7 @@ import { useState, useRef } from "react";
 import { getCartItems, createCartItem } from "../../services/cart-service";
 import styles from "./ProductForm.module.scss";
 
-// Ensure displayed price is multiplied by units ordered
-// Create components for inputs ?
+// Create components for inputs
 // Refactor by moving functions to a utils file
 
 const ProductForm = ({ title, unitPrice, variants }) => {
@@ -71,6 +70,7 @@ const ProductForm = ({ title, unitPrice, variants }) => {
     }
 
     createCartItem(cartItem).then(() => {
+      setHasError(false);
       setMessage("Item Added to Cart");
     });
   };
