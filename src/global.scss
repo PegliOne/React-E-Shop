@@ -1,0 +1,45 @@
+@use "./assets/stylesheets/partials/mixins.scss";
+@use "./assets/stylesheets/partials/pallete.scss";
+
+body {
+  margin: 0;
+  background-color: pallete.$primary-background-colour;
+  color: pallete.$primary-text-colour;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+
+  main {
+    @include mixins.column-styles;
+    margin: 24px 24px 80px;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 1.4rem;
+
+      &.success {
+        color: pallete.$success-colour;
+        font-size: 1.4rem;
+      }
+    }
+
+    section {
+      font-family: "Courier New", Courier, monospace;
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  a {
+    color: pallete.$primary-text-colour;
+  }
+}

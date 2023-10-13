@@ -1,0 +1,60 @@
+@use "./breakpoints.scss";
+@use "./pallete.scss";
+
+@mixin column-styles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin product-page-responsive-styling(
+  $desktop-width: 800px,
+  $tablet-width: 720px,
+  $mobile-width: 400px
+) {
+  @include breakpoints.small-desktop {
+    width: $desktop-width;
+  }
+
+  @include breakpoints.tablet {
+    width: $tablet-width;
+    flex-direction: column;
+  }
+
+  @include breakpoints.mobile {
+    width: $mobile-width;
+  }
+}
+
+@mixin button-styles($padding: 8px 12px, $border-radius: 12px) {
+  margin-top: 8px;
+  padding: $padding;
+  color: pallete.$primary-text-colour;
+  font-size: 1.1rem;
+  background-color: pallete.$tertiary-background-colour;
+  border: 2px solid pallete.$primary-text-colour;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: pallete.$hover-colour;
+    cursor: pointer;
+  }
+}
+
+@mixin message-styles {
+  height: 24px;
+  font-size: 1.2rem;
+  color: pallete.$success-colour;
+
+  @include breakpoints.small-desktop {
+    font-size: 1rem;
+  }
+
+  @include breakpoints.mobile {
+    font-size: 0.8rem;
+  }
+
+  &_error {
+    color: pallete.$danger-colour;
+  }
+}

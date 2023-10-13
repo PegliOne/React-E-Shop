@@ -1,0 +1,18 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @include breakpoints.small-desktop {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include breakpoints.tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoints.mobile {
+    grid-template-columns: 1fr;
+  }
+}

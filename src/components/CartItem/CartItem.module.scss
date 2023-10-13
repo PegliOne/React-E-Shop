@@ -1,0 +1,139 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 24px;
+  padding: 24px;
+  background-color: pallete.$secondary-background-colour;
+  border: 2px solid pallete.$primary-text-colour;
+  border-radius: 20px;
+
+  @include breakpoints.mobile {
+    align-items: flex-start;
+    padding: 12px 24px 12px 12px;
+  }
+
+  .item__section {
+    display: flex;
+    justify-content: center;
+    width: 260px;
+
+    @include breakpoints.mobile {
+      width: 160px;
+    }
+
+    .item__image {
+      height: 200px;
+      border: 2px solid pallete.$primary-text-colour;
+
+      &:hover {
+        box-shadow: 0 0 8px pallete.$primary-text-colour;
+      }
+
+      @include breakpoints.mobile {
+        height: 160px;
+      }
+    }
+  }
+
+  .item__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-size: 1.6rem;
+
+    @include breakpoints.small-desktop {
+      font-size: 1.2rem;
+    }
+
+    @include breakpoints.mobile {
+      width: 260px;
+      font-size: 1rem;
+    }
+
+    .item__link {
+      text-decoration: none;
+
+      &:hover {
+        color: pallete.$primary-text-hover-colour;
+      }
+
+      .item__title {
+        margin-top: 8px;
+        font-size: 1.6rem;
+
+        @include breakpoints.small-desktop {
+          font-size: 1.2rem;
+        }
+
+        @include breakpoints.mobile {
+          margin-bottom: 8px;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .item__div {
+      display: flex;
+      align-items: center;
+
+      @include breakpoints.tablet {
+        flex-direction: column;
+      }
+
+      .item__quantity,
+      .item__price {
+        display: flex;
+        align-items: center;
+      }
+
+      .item__price {
+        @include breakpoints.tablet {
+          margin-top: 12px;
+        }
+      }
+
+      .quantity__span {
+        display: flex;
+        height: fit-content;
+        margin-right: 20px;
+
+        @include breakpoints.mobile {
+          margin-right: 8px;
+        }
+
+        .quantity__button {
+          @include mixins.button-styles(4px 8px, 4px);
+          margin: 0 0 0 4px;
+
+          @include breakpoints.mobile {
+            font-size: 1rem;
+          }
+
+          .button__span {
+            display: inline-block;
+            width: 10px;
+            position: relative;
+            top: -1px;
+          }
+        }
+      }
+
+      .quantity__price {
+        display: inline-block;
+        width: 104px;
+        text-align: right;
+      }
+    }
+
+    .item__message {
+      @include mixins.message-styles;
+      margin-bottom: 0;
+    }
+  }
+}

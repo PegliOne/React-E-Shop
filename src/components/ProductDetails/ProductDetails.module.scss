@@ -1,0 +1,42 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.details {
+  display: flex;
+  width: 1160px;
+  margin: 12px 0 0;
+  background-color: pallete.$secondary-background-colour;
+  border: 4px solid pallete.$primary-text-colour;
+
+  @include mixins.product-page-responsive-styling;
+
+  .details__image {
+    height: 400px;
+    margin: 0 auto;
+    border-right: 4px solid pallete.$primary-text-colour;
+
+    @include breakpoints.tablet {
+      width: 100%;
+      height: unset;
+      border-bottom: 4px solid pallete.$primary-text-colour;
+    }
+  }
+
+  .details__content {
+    @include mixins.column-styles;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+
+    .details__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .list__item {
+        margin: 24px;
+      }
+    }
+  }
+}

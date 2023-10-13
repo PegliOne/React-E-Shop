@@ -1,0 +1,54 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.container {
+  box-sizing: border-box;
+  width: 1168px;
+  padding: 48px 24px 24px;
+  background-color: pallete.$secondary-background-colour;
+  border: 4px solid pallete.$primary-text-colour;
+  border-top: none;
+
+  @include mixins.product-page-responsive-styling(808px, 728px, 404px);
+
+  .container__form {
+    @include mixins.column-styles;
+
+    .form__control {
+      margin: 12px;
+
+      .form__label {
+        padding: 0 8px;
+      }
+
+      .form__price {
+        display: inline-block;
+        width: 24px;
+      }
+
+      .form__input,
+      .form__select {
+        margin-right: 12px;
+        padding: 0 8px;
+        border: none;
+        border-bottom: 2px solid pallete.$primary-text-colour;
+        color: pallete.$primary-text-colour;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      .form__input {
+        display: inline-block;
+        width: 32px;
+      }
+
+      .form__button {
+        @include mixins.button-styles;
+      }
+    }
+
+    .form__message {
+      @include mixins.message-styles;
+    }
+  }
+}

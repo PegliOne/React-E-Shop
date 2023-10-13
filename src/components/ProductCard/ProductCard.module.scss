@@ -1,0 +1,49 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.card {
+  display: block;
+  width: 260px;
+  height: 580px;
+  margin: 8px;
+  padding-bottom: 8px;
+  background-color: pallete.$secondary-background-colour;
+  border: 2px solid black;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 0 8px pallete.$primary-text-colour;
+    cursor: pointer;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .card__image {
+      width: 100%;
+    }
+
+    .card__title {
+      height: 48px;
+      margin: 24px 0 16px;
+      font-size: 1.4rem;
+
+      @include breakpoints.tablet {
+        font-size: 1.2rem;
+      }
+    }
+
+    .card__para {
+      height: 24px;
+      margin: 12px 0;
+
+      @include breakpoints.tablet {
+        margin: 20px 0;
+        font-size: 1rem;
+      }
+    }
+  }
+}
