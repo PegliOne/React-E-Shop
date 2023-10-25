@@ -63,7 +63,7 @@ const CartItem = ({ id, title, variantTitle, quantity, updateLocalCart }) => {
       {product && (
         <article className={styles.item}>
           <section className={styles.item__section}>
-            <Link className={styles.item__image_link} to={`/product/${product.id}`}>
+            <Link to={`/product/${product.id}`}>
               <img
                 className={styles.item__image}
                 src={`/${product.imageUrl}`}
