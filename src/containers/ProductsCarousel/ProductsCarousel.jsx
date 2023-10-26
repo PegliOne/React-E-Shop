@@ -1,13 +1,12 @@
 import { useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductsCarousel.module.scss";
+import CarouselButton from "../../components/CarouselButton/CarouselButton";
 
 const ProductsCarousel = ({ products, productDisplayCount, isDesktop }) => {
   const indicesArray = [0, 1, 2].slice(0, productDisplayCount);
 
   const [indices, setIndices] = useState(indicesArray);
-
-  // TODO: Create a reusable component for the buttons and move the updateIndices logic to it
 
   const updateIndices = (step) => {
     const newIndices = indices.map((index) => {
@@ -30,11 +29,10 @@ const ProductsCarousel = ({ products, productDisplayCount, isDesktop }) => {
   return (
     <section className={carouselClasses}>
       {products.length > productDisplayCount && (
-        <img
-          className={styles.carousel__button}
-          src="caret-left.svg"
-          alt="Left Arrow"
-          onClick={() => updateIndices(-1)}
+        <CarouselButton
+          direction="left"
+          updateIndices={updateIndices}
+          step={-1}
         />
       )}
       {indices.map((index) => (
@@ -48,11 +46,10 @@ const ProductsCarousel = ({ products, productDisplayCount, isDesktop }) => {
         />
       ))}
       {products.length > productDisplayCount && (
-        <img
-          className={styles.carousel__button}
-          src="caret-right.svg"
-          alt="Right Arrow"
-          onClick={() => updateIndices(1)}
+        <CarouselButton
+          direction="right"
+          updateIndices={updateIndices}
+          step={1}
         />
       )}
     </section>

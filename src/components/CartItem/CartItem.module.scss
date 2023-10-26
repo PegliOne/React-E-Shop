@@ -4,6 +4,7 @@
 
 .item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin: 24px;
   padding: 24px;
@@ -13,7 +14,7 @@
 
   @include breakpoints.mobile {
     align-items: flex-start;
-    padding: 12px 24px 12px 12px;
+    padding: 12px;
   }
 
   .item__section {
@@ -21,8 +22,13 @@
     justify-content: center;
     width: 260px;
 
+    @include breakpoints.small-desktop {
+      padding-right: 12px;
+    }
+
     @include breakpoints.mobile {
       width: 160px;
+      padding-left: 4px;
     }
 
     .item__image {
@@ -45,11 +51,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    font-size: 1.6rem;
-
-    @include breakpoints.small-desktop {
-      font-size: 1.2rem;
-    }
+    font-size: 1.4rem;
 
     @include breakpoints.mobile {
       width: 260px;
@@ -65,11 +67,7 @@
 
       .item__title {
         margin-top: 8px;
-        font-size: 1.6rem;
-
-        @include breakpoints.small-desktop {
-          font-size: 1.2rem;
-        }
+        font-size: 1.5rem;
 
         @include breakpoints.mobile {
           margin-bottom: 8px;

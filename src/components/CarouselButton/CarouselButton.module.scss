@@ -1,0 +1,17 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.carousel__button {
+  width: 80px;
+  margin: -12px;
+
+  @include breakpoints.tablet {
+    width: 60px;
+    margin: -20px;
+  }
+
+  &:hover {
+    filter: drop-shadow(0 0 2px pallete.$shadow-colour);
+    cursor: pointer;
+  }
+}
