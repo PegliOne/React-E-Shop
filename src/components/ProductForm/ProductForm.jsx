@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
-import { getCartItems, createCartItem } from "../../services/cart-service";
+import { createCartItem } from "../../services/cart-service";
+import {
+  checkItemInCart,
+  checkItemAvailability,
+  getCartItem,
+} from "./ProductFormUtils";
 import styles from "./ProductForm.module.scss";
-
-// Create components for inputs
-// Refactor by moving functions to a utils file
 
 const ProductForm = ({ title, unitPrice, variants }) => {
   const formRef = useRef(null);
@@ -18,60 +20,39 @@ const ProductForm = ({ title, unitPrice, variants }) => {
     setCurrentPrice(currentPrice);
   };
 
-  const checkItemInCart = (variantTitle) => {
-    return getCartItems().then((cartItems) => {
-      const existingItems = cartItems.filter(
-        (cartItem) => cartItem.title === title
-      );
-
-      return existingItems?.some(
-        (existingItem) => existingItem.variantTitle === variantTitle
-      );
-    });
-  };
-
-  const checkItemAvailability = (variantTitle, selectedQuantity) => {
-    const selectedVariant = variants.find(
-      (variant) => variant.title === variantTitle
-    );
-    return selectedVariant.quantity >= selectedQuantity;
+  const setError = (hasError, message) => {
+    setHasError(hasError);
+    setMessage(message);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = formRef.current;
-    const formData = new FormData(form);
-    const cartItem = {
-      title: title,
-      variantTitle: formData.get("variantTitle"),
-      quantity: Number(formData.get("quantity")),
-    };
+    const cartItem = getCartItem(title, form);
 
     setCurrentPrice(cartItem.quantity * unitPrice);
 
-    const isItemInCart = await checkItemInCart(cartItem.variantTitle);
+    const isItemInCart = await checkItemInCart(title, cartItem.variantTitle);
 
     if (isItemInCart) {
-      setHasError(true);
-      setMessage("Error: Item Already In Cart");
+      setError(true, "Error: Item Already In Cart");
       return;
     }
 
     const isItemAvailable = checkItemAvailability(
+      variants,
       cartItem.variantTitle,
       cartItem.quantity
     );
 
     if (!isItemAvailable) {
-      setHasError(true);
-      setMessage("Error: Quantity Selected Exceeds Item Availability");
+      setError(true, "Error: Quantity Selected Exceeds Item Availability");
       return;
     }
 
     createCartItem(cartItem).then(() => {
-      setHasError(false);
-      setMessage("Item Added to Cart");
+      setError(false, "Item Added to Cart");
     });
   };
 
