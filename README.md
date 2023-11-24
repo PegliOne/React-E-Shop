@@ -2,6 +2,8 @@
 
 A mock e-commerce app for retro videogames built in React.
 
+Hosted Site: https://radiant-centaur-30b2cf.netlify.app/
+
 ## Technologies Used
 
 - React (with SCSS)
