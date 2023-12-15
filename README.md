@@ -1,8 +1,10 @@
 # React E-Shop
 
-A mock e-commerce app for retro videogames built in React.
-
 Hosted Site: https://radiant-centaur-30b2cf.netlify.app/
+
+## Summary
+
+A mock e-commerce app for retro videogames built using SCSS React.js and a Firestore database. Features include a product carousel, a product grid, product order forms and a cart.
 
 ## Technologies Used
 
